@@ -1,27 +1,80 @@
-# NotesApp
+# Notes App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+A modern Angular 17 notes application built with standalone components and Angular Signals. This app demonstrates a lightweight signal-based store, local persistence, drag-and-drop ordering, and responsive note management without NgRx.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Add, edit, and delete notes with a clean UI
+- Search notes using computed signals for instant filtering
+- Persist notes in `localStorage` using `effect()`
+- Toast notifications for user feedback on actions
+- Standalone components for reusable UI and clear architecture
 
-## Code scaffolding
+## Tech Stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 17
+- Standalone components
+- Angular Signals (`signal`, `computed`, `effect`)
+- LocalStorage for persistence
+- TypeScript, HTML, SCSS
 
-## Build
+## Folder Structure
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```text
+src/
+  app/
+    components/
+      header/             # App header component
+      note-card/          # Display individual notes
+      note-form/          # Note creation/edit form
+      notes-list/         # List view for notes
+    pages/
+      notes-page/         # Main notes page
+      edit-note-page/     # Note editing page
+    services/
+      toast.service.ts    # Toast notification service
+    store/
+      notes.store.ts      # Signal-based state management for notes
+    models/
+      note.ts             # Note data model
+  assets/
+  styles/
+    _variables.scss       # App style variables
+```
 
-## Running unit tests
+This structure keeps pages and reusable components separate, with a dedicated signal store and service layer for clean state handling.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## How it works
 
-## Running end-to-end tests
+- `signal()` stores the app state for notes.
+- `computed()` derives filtered results from the main note list for search and list views.
+- `effect()` watches the note state and syncs it to `localStorage` automatically.
+- Components consume signals directly, so UI updates reactively when notes change.
+- Drag-and-drop changes the order of notes in the store, and the updated list persists immediately.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Installation and Setup
 
-## Further help
+```bash
+npm install
+npm start
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Then open the app in your browser at the local development URL shown in the terminal.
+
+## Usage
+
+1. Add a note using the form.
+2. Search notes with the search input to filter results instantly.
+3. Click edit to modify an existing note.
+4. Delete a note to remove it from the list.
+5. Drag notes to reorder them, and the order will be saved locally.
+
+## Future Improvements
+
+- Add backend integration for user accounts and remote persistence
+- Implement authentication and user-specific notes
+- Sync notes across devices with a cloud API
+- Add rich text editing and note categories/tags
+
+## Screenshots
+
