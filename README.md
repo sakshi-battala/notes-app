@@ -78,9 +78,17 @@ Then open the app in your browser at the local development URL shown in the term
 
 ## Screenshots
 
-<img width="1575" height="1536" alt="Screenshot 2026-04-16 201404" src="https://github.com/user-attachments/assets/4b25e8f5-5414-4446-8d74-c7cce8abe17e" />
-<img width="1570" height="1550" alt="Screenshot 2026-04-16 201437" src="https://github.com/user-attachments/assets/62b2108f-764d-44e8-b289-d5554b4db254" />
-<img width="1571" height="1536" alt="Screenshot 2026-04-16 201457" src="https://github.com/user-attachments/assets/aba75bf7-a95d-4753-be03-3e6dd834e2c2" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4b25e8f5-5414-4446-8d74-c7cce8abe17e" width="700" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/62b2108f-764d-44e8-b289-d5554b4db254" width="700" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/aba75bf7-a95d-4753-be03-3e6dd834e2c2" width="700" />
+</p>
 
 ## 🤝 Contributing
 
