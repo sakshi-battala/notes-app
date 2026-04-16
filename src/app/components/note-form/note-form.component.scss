@@ -1,0 +1,161 @@
+@use "../../../styles/variables" as *;
+
+$input-bg: lighten(
+  $bg-color,
+  3%
+); // Subtle input background for 'floating' look
+$toolbar-border: rgba($text-color, 0.08); // Very soft lines
+
+.note-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid $toolbar-border;
+  background-color: $bg-color;
+}
+
+.icon-btn {
+  background: $card-color;
+  border: none;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $muted-text;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: lighten($card-color, 5%);
+    color: $text-color;
+  }
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px; // Premium spacing
+}
+
+.save-btn {
+  background-color: transparent; // Clean, borderless save
+  color: $text-color;
+  border: 1px solid rgba($text-color, 0.2);
+
+  &:hover {
+    border-color: rgba($text-color, 0.4);
+    background-color: rgba($text-color, 0.05);
+  }
+}
+
+
+.note-editor {
+  flex: 1; // Take all remaining space between header and footer
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow-y: auto; // Content scrolls, header/footer stay fixed
+}
+
+.editor-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: $text-color;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 1rem;
+  letter-spacing: -1px; // Bold logo look
+  font-family: inherit;
+
+  &::placeholder {
+    color: $muted-text;
+  }
+  &:focus {
+    outline: none;
+    background: rgba($text-color, 0.03);
+  }
+}
+
+.editor-content {
+  flex: 1; // Content area grows to fill
+  font-size: 1rem;
+  color: lighten($muted-text, 5%); // Slightly brighter than muted
+  line-height: 1.6;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  resize: none; // Disable manual resize, handle automatically if needed
+  font-family: inherit;
+
+  &::placeholder {
+    color: $muted-text;
+  }
+  &:focus {
+    outline: none;
+    background: rgba($text-color, 0.03);
+  }
+}
+
+// 3. Formatting Toolbar
+.format-toolbar {
+  display: flex;
+  gap: 4px; // Tight spacing
+  padding: 12px 1.5rem;
+  background-color: lighten($bg-color, 1%); // Slightly different dark
+  border-top: 1px solid $toolbar-border;
+  margin-bottom: 250px; // Placeholder margin for the simulated keyboard height
+  overflow-x: auto; // If bar is too wide, scroll horizontally
+}
+
+.format-btn {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: $muted-text;
+  font-weight: 600;
+  font-size: 0.95rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.1s ease;
+
+  &:hover {
+    color: $text-color;
+    background-color: rgba($text-color, 0.05);
+  }
+
+  // Example for an active state
+  &.active {
+    color: #42a5f5; // Primary accent color
+    background-color: rgba(#42a5f5, 0.1);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.divider {
+  width: 1px;
+  background-color: $toolbar-border;
+  height: 24px;
+  margin: 0 4px;
+}

@@ -1,0 +1,76 @@
+@use "../../../styles/variables" as *;
+
+.card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: #fff;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+
+    .icon-btn { opacity: 1; }
+  }
+
+  h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    max-width: 85%; // Leave room for the pin icon
+  }
+
+  p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    line-height: 1.5;
+    // Multi-line truncation
+    display: -webkit-box;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.icon-btn {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 8px;
+  padding: 6px;
+  color: white;
+  cursor: pointer;
+  opacity: 0; 
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg { width: 18px; height: 18px; }
+  &:hover { background: rgba(0, 0, 0, 0.3); }
+}
+
+// Top Right Position
+.pin-btn {
+  top: 12px;
+  right: 12px;
+
+  &.is-pinned {
+    opacity: 1; // Always show if pinned
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+// Bottom Right Position
+.delete-btn {
+  bottom: 12px;
+  right: 12px;
+
+  &:hover { background: #e53935; }
+}

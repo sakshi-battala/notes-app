@@ -1,0 +1,48 @@
+<div class="note-form-wrapper">
+  <header class="form-header">
+    <button class="icon-btn back-btn" aria-label="Go Back" (click)="onBack()">
+      <svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <div class="header-actions">
+      <button
+        class="icon-btn save-btn"
+        (click)="onSubmit()"
+        aria-label="Save Note"
+      >
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="note-editor">
+    <input
+      type="text"
+      [(ngModel)]="title"
+      placeholder="Title"
+      class="editor-title"
+    />
+
+    <textarea
+      [(ngModel)]="content"
+      placeholder="Type something..."
+      class="editor-content"
+    ></textarea>
+  </main>
+</div>

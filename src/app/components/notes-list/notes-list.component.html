@@ -1,0 +1,57 @@
+<div class="list-container">
+  @if (hasNotes()) {
+    <!-- pinned section  -->
+    @if (hasPinned()) {
+      <div class="section-wrapper">
+        <h2 class="section-label">Pinned</h2>
+
+        <div class="note-grid">
+          @for (note of pinnedNotes(); track note.id) {
+            <app-note-card [note]="note" />
+          }
+        </div>
+      </div>
+    }
+
+    <!-- other notes -->
+    <div class="section-wrapper">
+      @if (hasPinned() && hasOthers()) {
+        <h2 class="section-label">Others</h2>
+      }
+
+      @if (hasOthers()) {
+        <div class="note-grid">
+          @for (note of otherNotes(); track note.id) {
+            <app-note-card [note]="note" />
+          }
+        </div>
+      }
+    </div>
+  } @else {
+    <!--  empty notes -->
+    <div class="empty-state">
+      <div class="icon-wrapper">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"
+          ></path>
+          <path
+            d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"
+          ></path>
+        </svg>
+      </div>
+
+      @if (hasSearchTerm()) {
+        <h2>No results found</h2>
+      } @else {
+        <h2>No notes yet</h2>
+        <p>Create your first note to get started!</p>
+      }
+    </div>
+  }
+</div>

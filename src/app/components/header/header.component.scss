@@ -1,0 +1,97 @@
+@use "../../../styles/variables" as *;
+
+$transition-speed: 0.2s;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: $bg-color;
+  border-bottom: 1px solid rgba($text-color, 0.05);
+  gap: 12px; // Prevents items from touching on small screens
+
+  @media (max-width: 480px) {
+    padding: 0.75rem 1rem; // Tighter padding on mobile
+  }
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: $text-color;
+  margin: 0;
+  letter-spacing: -0.5px;
+  white-space: nowrap; // Prevents "Notes" from breaking into two lines
+
+  @media (max-width: 480px) {
+    font-size: 1.1rem; // Smaller font for small screens
+  }
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  // Desktop: Grows to 300px
+  // Mobile: Shrinks to fit remaining space
+  flex: 0 1 300px;
+  min-width: 40px; // Ensures it doesn't disappear completely
+  transition: flex 0.3s ease;
+
+  @media (max-width: 480px) {
+    flex: 1; // On mobile, let it take up available space
+  }
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  color: $muted-text;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  background: $card-color;
+  border: 1px solid transparent;
+  padding: 10px 12px 10px 38px;
+  border-radius: 8px;
+  color: $text-color;
+  font-size: 0.9rem;
+  transition: all $transition-speed ease;
+
+  &::placeholder {
+    color: $muted-text;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 12px 8px 34px; // Slightly smaller padding
+    font-size: 0.85rem;
+
+    // Optional: Hide placeholder on very small screens to save space
+    &::placeholder {
+      font-size: 0.8rem;
+    }
+  }
+
+  &:hover {
+    background: lighten($card-color, 3%);
+  }
+
+  &:focus {
+    outline: none;
+    background: lighten($card-color, 5%);
+    border-color: rgba($text-color, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 480px) {
+      // On mobile, expand the search bar slightly when focused if needed
+      position: relative;
+      z-index: 10;
+    }
+  }
+}
