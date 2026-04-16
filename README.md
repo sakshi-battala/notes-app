@@ -79,15 +79,12 @@ Then open the app in your browser at the local development URL shown in the term
 ## Screenshots
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4b25e8f5-5414-4446-8d74-c7cce8abe17e" width="700" />
+  <img src="https://github.com/user-attachments/assets/4b25e8f5-5414-4446-8d74-c7cce8abe17e" width="45%" />
+  <img src="https://github.com/user-attachments/assets/62b2108f-764d-44e8-b289-d5554b4db254" width="45%" />
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/62b2108f-764d-44e8-b289-d5554b4db254" width="700" />
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/aba75bf7-a95d-4753-be03-3e6dd834e2c2" width="700" />
+  <img src="https://github.com/user-attachments/assets/aba75bf7-a95d-4753-be03-3e6dd834e2c2" width="60%" />
 </p>
 
 ## 🤝 Contributing
