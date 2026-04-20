@@ -39,3 +39,7 @@
     </svg>
   </button>
 </div>
+
+@if (showDeletePopup) {
+  <app-confirm-dialog (cancel)="cancelDelete()" (confirm)="confirmDelete()" />
+}
