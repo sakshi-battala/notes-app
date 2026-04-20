@@ -97,12 +97,13 @@ Or try the live demo at [https://notes-app-zeta-ashy-96.vercel.app/notes](https:
 ## Screenshots
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4b25e8f5-5414-4446-8d74-c7cce8abe17e" width="45%" />
-  <img src="https://github.com/user-attachments/assets/62b2108f-764d-44e8-b289-d5554b4db254" width="45%" />
+  <img src="https://github.com/user-attachments/assets/9338bb97-725d-4653-887e-47e6f8108d1f" width="45%" />
+  <img src="https://github.com/user-attachments/assets/b27c4d3a-d934-44c7-a61f-6e1f0a431785" width="45%" />
 </p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/aba75bf7-a95d-4753-be03-3e6dd834e2c2" width="60%" />
+   <img src="https://github.com/user-attachments/assets/1244097a-389f-42c0-a0cf-5721810c64cd" width="45%" />
+   <img src="https://github.com/user-attachments/assets/3bc008d7-4d6c-4c04-b8c5-6e46f435ea54" width="45%" />
 </p>
 
 ## 🤝 Contributing
