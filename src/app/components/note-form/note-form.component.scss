@@ -1,17 +1,11 @@
-@use "../../../styles/variables" as *;
-
-$input-bg: lighten(
-  $bg-color,
-  3%
-); // Subtle input background for 'floating' look
-$toolbar-border: rgba($text-color, 0.08); // Very soft lines
+$transition-speed: 0.2s;
 
 .note-form-wrapper {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: $bg-color;
-  color: $text-color;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: "Poppins", sans-serif;
 }
 
@@ -20,12 +14,12 @@ $toolbar-border: rgba($text-color, 0.08); // Very soft lines
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid $toolbar-border;
-  background-color: $bg-color;
+  border-bottom: 1px solid #333;
+  background-color: var(--bg-color);
 }
 
 .icon-btn {
-  background: $card-color;
+  background: var(--card-color);
   border: none;
   border-radius: 10px;
   width: 30px;
@@ -33,99 +27,100 @@ $toolbar-border: rgba($text-color, 0.08); // Very soft lines
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $muted-text;
+  color: var(--muted-text);
   cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    background: lighten($card-color, 5%);
-    color: $text-color;
+    background: var(--card-color-light);
+    color: var(--text-color);
   }
 }
 
 .header-actions {
   display: flex;
-  gap: 8px; // Premium spacing
+  gap: 8px;
 }
 
 .save-btn {
-  background-color: transparent; // Clean, borderless save
-  color: $text-color;
-  border: 1px solid rgba($text-color, 0.2);
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid #555;
 
   &:hover {
-    border-color: rgba($text-color, 0.4);
-    background-color: rgba($text-color, 0.05);
+    border-color: #777;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 }
 
-
 .note-editor {
-  flex: 1; // Take all remaining space between header and footer
+  flex: 1;
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  overflow-y: auto; // Content scrolls, header/footer stay fixed
+  overflow-y: auto;
 }
 
 .editor-title {
   font-size: 1.5rem;
   font-weight: 400;
-  color: $text-color;
+  color: var(--text-color);
   background: transparent;
   border: none;
   border-radius: 8px;
   padding: 10px;
   margin-bottom: 1rem;
-  letter-spacing: -1px; // Bold logo look
+  letter-spacing: -1px;
   font-family: inherit;
 
   &::placeholder {
-    color: $muted-text;
+    color: var(--muted-text);
   }
+
   &:focus {
     outline: none;
-    background: rgba($text-color, 0.03);
+    background: rgba(255, 255, 255, 0.03);
   }
 }
 
 .editor-content {
-  flex: 1; // Content area grows to fill
+  flex: 1;
   font-size: 1rem;
-  color: lighten($muted-text, 5%); // Slightly brighter than muted
+  color: var(--muted-text);
   line-height: 1.6;
   background: transparent;
   border: none;
   border-radius: 8px;
   padding: 10px;
-  resize: none; // Disable manual resize, handle automatically if needed
+  resize: none;
   font-family: inherit;
 
   &::placeholder {
-    color: $muted-text;
+    color: var(--muted-text);
   }
+
   &:focus {
     outline: none;
-    background: rgba($text-color, 0.03);
+    background: rgba(255, 255, 255, 0.03);
   }
 }
 
-// 3. Formatting Toolbar
+/* Toolbar */
 .format-toolbar {
   display: flex;
-  gap: 4px; // Tight spacing
+  gap: 4px;
   padding: 12px 1.5rem;
-  background-color: lighten($bg-color, 1%); // Slightly different dark
-  border-top: 1px solid $toolbar-border;
-  margin-bottom: 250px; // Placeholder margin for the simulated keyboard height
-  overflow-x: auto; // If bar is too wide, scroll horizontally
+  background-color: var(--card-color);
+  border-top: 1px solid #333;
+  margin-bottom: 250px;
+  overflow-x: auto;
 }
 
 .format-btn {
   background: transparent;
   border: none;
   border-radius: 6px;
-  color: $muted-text;
+  color: var(--muted-text);
   font-weight: 600;
   font-size: 0.95rem;
   width: 36px;
@@ -137,14 +132,13 @@ $toolbar-border: rgba($text-color, 0.08); // Very soft lines
   transition: all 0.1s ease;
 
   &:hover {
-    color: $text-color;
-    background-color: rgba($text-color, 0.05);
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
-  // Example for an active state
   &.active {
-    color: #42a5f5; // Primary accent color
-    background-color: rgba(#42a5f5, 0.1);
+    color: #42a5f5;
+    background-color: rgba(66, 165, 245, 0.1);
   }
 
   svg {
@@ -155,7 +149,7 @@ $toolbar-border: rgba($text-color, 0.08); // Very soft lines
 
 .divider {
   width: 1px;
-  background-color: $toolbar-border;
+  background-color: #333;
   height: 24px;
   margin: 0 4px;
 }

@@ -1,5 +1,26 @@
 // variables
-$bg-color: #1e1e1e;
-$card-color: #2c2c2c;
-$text-color: #fff;
-$muted-text: #aaa;
+// $bg-color: #1e1e1e;
+// $card-color: #2c2c2c;
+// $text-color: #fff;
+// $muted-text: #aaa;
+
+:root {
+  --bg-color: #121212;
+  --card-color: #1e1e1e;
+  --card-color-light: #2a2a2a;
+  --text-color: #f5f5f5;
+  --muted-text: #a0a0a0;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/* LIGHT THEME */
+.light-theme {
+  --bg-color: #f8f9fa;
+  --card-color: #ffffff;
+  --card-color-light: #f1f3f5;
+  --text-color: #1a1c1e;
+  --muted-text: #64748b;
+  --border-color: rgba(0, 0, 0, 0.05);
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}

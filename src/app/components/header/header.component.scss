@@ -1,5 +1,3 @@
-@use "../../../styles/variables" as *;
-
 $transition-speed: 0.2s;
 
 .header {
@@ -7,25 +5,26 @@ $transition-speed: 0.2s;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background-color: $bg-color;
-  border-bottom: 1px solid rgba($text-color, 0.05);
-  gap: 12px; // Prevents items from touching on small screens
+  background-color: var(--bg-color);
+  border-bottom: 1px solid #333;
+  gap: 16px;
 
   @media (max-width: 480px) {
-    padding: 0.75rem 1rem; // Tighter padding on mobile
+    padding: 0.75rem 1rem;
+    gap: 8px;
   }
 }
 
 .logo {
   font-size: 1.25rem;
-  font-weight: 500;
-  color: $text-color;
+  font-weight: 600;
+  color: var(--text-color);
   margin: 0;
   letter-spacing: -0.5px;
-  white-space: nowrap; // Prevents "Notes" from breaking into two lines
+  white-space: nowrap;
 
-  @media (max-width: 480px) {
-    font-size: 1.1rem; // Smaller font for small screens
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
   }
 }
 
@@ -33,15 +32,12 @@ $transition-speed: 0.2s;
   position: relative;
   display: flex;
   align-items: center;
+  flex: 0 1 400px;
+  min-width: 40px;
+  transition: all 0.3s ease;
 
-  // Desktop: Grows to 300px
-  // Mobile: Shrinks to fit remaining space
-  flex: 0 1 300px;
-  min-width: 40px; // Ensures it doesn't disappear completely
-  transition: flex 0.3s ease;
-
-  @media (max-width: 480px) {
-    flex: 1; // On mobile, let it take up available space
+  @media (max-width: 768px) {
+    flex: 1;
   }
 }
 
@@ -50,48 +46,84 @@ $transition-speed: 0.2s;
   left: 12px;
   width: 16px;
   height: 16px;
-  color: $muted-text;
+  color: var(--muted-text);
   pointer-events: none;
 }
 
 .search-input {
   width: 100%;
-  background: $card-color;
+  background: var(--card-color);
   border: 1px solid transparent;
   padding: 10px 12px 10px 38px;
-  border-radius: 8px;
-  color: $text-color;
+  border-radius: 10px;
+  color: var(--text-color);
   font-size: 0.9rem;
   transition: all $transition-speed ease;
 
   &::placeholder {
-    color: $muted-text;
-  }
-
-  @media (max-width: 480px) {
-    padding: 8px 12px 8px 34px; // Slightly smaller padding
-    font-size: 0.85rem;
-
-    // Optional: Hide placeholder on very small screens to save space
-    &::placeholder {
-      font-size: 0.8rem;
-    }
+    color: var(--muted-text);
   }
 
   &:hover {
-    background: lighten($card-color, 3%);
+    background: var(--card-color-light);
   }
 
   &:focus {
     outline: none;
-    background: lighten($card-color, 5%);
-    border-color: rgba($text-color, 0.2);
+    background: var(--card-color-light);
+    border-color: #555;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
 
-    @media (max-width: 480px) {
-      // On mobile, expand the search bar slightly when focused if needed
-      position: relative;
-      z-index: 10;
-    }
+  @media (max-width: 480px) {
+    padding: 8px 12px 8px 34px;
+    font-size: 0.85rem;
+  }
+}
+
+.theme-toggle {
+  background: var(--card-color);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all $transition-speed ease;
+  overflow: hidden;
+
+  .theme-icon {
+    width: 20px;
+    height: 20px;
+    animation: rotateIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    background: var(--card-color-light);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-90deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
   }
 }

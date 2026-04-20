@@ -1,14 +1,16 @@
 # Notes App
 
-A modern Angular 17 notes application built with standalone components and Angular Signals. This app demonstrates a lightweight signal-based store, local persistence, drag-and-drop ordering, and responsive note management without NgRx.
+A modern Angular 17 notes application built with standalone components and Angular Signals. This app demonstrates a lightweight signal-based store, local persistence, and responsive note management without NgRx. It features a seamless dark/light theme toggle for enhanced user experience and accessibility.
 
 ## Features
 
-- Add, edit, and delete notes with a clean UI
-- Search notes using computed signals for instant filtering
-- Persist notes in `localStorage` using `effect()`
-- Toast notifications for user feedback on actions
-- Standalone components for reusable UI and clear architecture
+- **Note Management**: Add, edit, and delete notes with a clean, intuitive UI
+- **Instant Search**: Search notes using computed signals for real-time filtering
+- **Local Persistence**: Persist notes in `localStorage` using `effect()` for automatic saving
+- **Toast Notifications**: User feedback on actions via toast messages
+- **Theme Toggle**: Switch between dark and light themes for comfortable viewing
+- **Responsive Design**: Works seamlessly across devices
+- **Standalone Components**: Reusable UI components with clear architecture
 
 ## Tech Stack
 
@@ -16,6 +18,7 @@ A modern Angular 17 notes application built with standalone components and Angul
 - Standalone components
 - Angular Signals (`signal`, `computed`, `effect`)
 - LocalStorage for persistence
+- CSS Variables for theming
 - TypeScript, HTML, SCSS
 
 ## Folder Structure
@@ -24,10 +27,11 @@ A modern Angular 17 notes application built with standalone components and Angul
 src/
   app/
     components/
-      header/             # App header component
+      header/             # App header with search and theme toggle
       note-card/          # Display individual notes
       note-form/          # Note creation/edit form
       notes-list/         # List view for notes
+      confirm-dialog/     # Confirmation dialog for deletions
     pages/
       notes-page/         # Main notes page
       edit-note-page/     # Note editing page
@@ -39,18 +43,28 @@ src/
       note.ts             # Note data model
   assets/
   styles/
-    _variables.scss       # App style variables
+    _variables.scss       # App style variables and theme definitions
 ```
 
 This structure keeps pages and reusable components separate, with a dedicated signal store and service layer for clean state handling.
 
 ## How it works
 
-- `signal()` stores the app state for notes.
-- `computed()` derives filtered results from the main note list for search and list views.
-- `effect()` watches the note state and syncs it to `localStorage` automatically.
-- Components consume signals directly, so UI updates reactively when notes change.
-- Drag-and-drop changes the order of notes in the store, and the updated list persists immediately.
+- **State Management**: `signal()` stores the app state for notes, while `computed()` derives filtered results from the main note list for search and list views.
+- **Persistence**: `effect()` watches the note state and syncs it to `localStorage` automatically, ensuring notes are saved instantly.
+- **Reactivity**: Components consume signals directly, so UI updates reactively when notes change.
+- **Theming**: CSS variables define color schemes for dark and light themes. The theme toggle in the header switches the `light-theme` class on the body, updating the entire app's appearance instantly.
+
+## User Flow
+
+1. **Launch the App**: Open the app in your browser after running `npm start`.
+2. **Add a Note**: Use the note form at the top to create a new note by entering a title and content.
+3. **View Notes**: Newly added notes appear in the list below, displayed as cards.
+4. **Search Notes**: Type in the search bar in the header to filter notes instantly by title or content.
+5. **Edit a Note**: Click the edit button on a note card to navigate to the edit page, modify the content, and save changes.
+6. **Delete a Note**: Click the delete button on a note card, confirm in the dialog, and the note is removed.
+7. **Toggle Theme**: Click the theme toggle button (sun/moon icon) in the header to switch between dark and light modes.
+8. **Persistence**: All changes (add, edit, delete, reorder) are automatically saved to localStorage and persist across sessions.
 
 ## Installation and Setup
 
@@ -61,13 +75,15 @@ npm start
 
 Then open the app in your browser at the local development URL shown in the terminal.
 
+Or try the live demo at [https://notes-app-zeta-ashy-96.vercel.app/notes](https://notes-app-zeta-ashy-96.vercel.app/notes).
+
 ## Usage
 
-1. Add a note using the form.
-2. Search notes with the search input to filter results instantly.
-3. Click edit to modify an existing note.
-4. Delete a note to remove it from the list.
-5. Drag notes to reorder them, and the order will be saved locally.
+1. Add a note using the form at the top of the page.
+2. Search notes with the search input in the header to filter results instantly.
+3. Click the edit icon on a note card to modify an existing note.
+4. Click the delete icon on a note card and confirm to remove it from the list.
+5. Toggle between dark and light themes using the theme button (sun/moon icon) in the header for comfortable viewing.
 
 ## Future Improvements
 
@@ -75,6 +91,8 @@ Then open the app in your browser at the local development URL shown in the term
 - Implement authentication and user-specific notes
 - Sync notes across devices with a cloud API
 - Add rich text editing and note categories/tags
+- Implement note sharing and collaboration features
+- Add keyboard shortcuts for common actions
 
 ## Screenshots
 

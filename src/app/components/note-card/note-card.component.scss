@@ -1,11 +1,26 @@
 @use "../../../styles/variables" as *;
 
+// Mapping variables for cleaner syntax
+$bg-color: var(--bg-color);
+$card-color: var(--card-color);
+$card-hover: var(--card-color-light);
+$text-color: var(--text-color);
+$muted-text: var(--muted-text);
+$border: var(--border-color);
+$shadow: var(--shadow-color);
+
 .card {
+  background-color: $card-color;
   padding: 1.5rem;
   border-radius: 16px;
-  color: #fff;
+  border: 1px solid $border;
+  color: $text-color;
+
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
   min-height: 160px;
   display: flex;
   flex-direction: column;
@@ -14,24 +29,30 @@
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    background-color: $card-hover;
+    box-shadow: 0 10px 24px $shadow;
 
-    .icon-btn { opacity: 1; }
+    .icon-btn {
+      opacity: 1;
+    }
   }
 
   h3 {
     margin: 0 0 8px 0;
     font-size: 1.1rem;
     font-weight: 600;
-    max-width: 85%; // Leave room for the pin icon
+    max-width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   p {
     font-size: 0.95rem;
-    opacity: 0.85;
+    color: $muted-text;
     line-height: 1.5;
-    // Multi-line truncation
     display: -webkit-box;
+    -webkit-line-clamp: 4;
     line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -40,37 +61,54 @@
 
 .icon-btn {
   position: absolute;
-  background: rgba(0, 0, 0, 0.15);
+
+  background: rgba(125, 125, 125, 0.1);
   border: none;
   border-radius: 8px;
   padding: 6px;
-  color: white;
+  color: $text-color;
   cursor: pointer;
-  opacity: 0; 
+  opacity: 0;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  svg { width: 18px; height: 18px; }
-  &:hover { background: rgba(0, 0, 0, 0.3); }
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    background: rgba(125, 125, 125, 0.2);
+  }
 }
 
-// Top Right Position
 .pin-btn {
   top: 12px;
   right: 12px;
 
   &.is-pinned {
-    opacity: 1; // Always show if pinned
-    background: rgba(255, 255, 255, 0.25);
+    opacity: 1;
+    color: #42a5f5;
+    background: rgba(66, 165, 245, 0.1);
   }
 }
 
-// Bottom Right Position
+/* Bottom Right Position */
 .delete-btn {
   bottom: 12px;
   right: 12px;
 
-  &:hover { background: #e53935; }
+  &:hover {
+    background: #e53935;
+    color: white;
+  }
+}
+
+@media (max-width: 768px) {
+  .icon-btn {
+    opacity: 1;
+    background: rgba(125, 125, 125, 0.05);
+  }
 }
