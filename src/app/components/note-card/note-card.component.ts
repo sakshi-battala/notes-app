@@ -23,24 +23,6 @@ export class NoteCardComponent {
     private toastService: ToastService,
   ) {}
 
-  private colors = [
-    '#5c6bc0', // Indigo
-    '#66bb6a', // Green
-    '#ef5350', // Red/Pink
-    '#42a5f5', // Blue
-    '#ab47bc', // Purple
-    '#ffa726', // Orange
-  ];
-
-  get backgroundColor(): string {
-    // This ensures a specific note always gets the same color based on its ID
-    const hash = this.note.id
-      .toString()
-      .split('')
-      .reduce((acc: number, char: string) => acc + char.charCodeAt(0), 0);
-    return this.colors[hash % this.colors.length];
-  }
-
   delete(event: Event) {
     event.stopPropagation();
     this.showDeletePopup = true;

@@ -1,3 +1,14 @@
+@use "../../../styles/variables" as *;
+
+
+$bg-color: var(--bg-color);
+$card-color: var(--card-color);
+$card-hover: var(--card-color-light);
+$text-color: var(--text-color);
+$muted-text: var(--muted-text);
+$border-color: var(--border-color);
+$shadow-color: var(--shadow-color);
+
 $transition-speed: 0.2s;
 
 .header {
@@ -5,9 +16,12 @@ $transition-speed: 0.2s;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background-color: var(--bg-color);
-  border-bottom: 1px solid #333;
+  background-color: $bg-color;
+  border-bottom: 1px solid $border-color;
   gap: 16px;
+  transition:
+    background-color $transition-speed ease,
+    border-color $transition-speed ease;
 
   @media (max-width: 480px) {
     padding: 0.75rem 1rem;
@@ -18,7 +32,7 @@ $transition-speed: 0.2s;
 .logo {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-color);
+  color: $text-color;
   margin: 0;
   letter-spacing: -0.5px;
   white-space: nowrap;
@@ -34,11 +48,6 @@ $transition-speed: 0.2s;
   align-items: center;
   flex: 0 1 400px;
   min-width: 40px;
-  transition: all 0.3s ease;
-
-  @media (max-width: 768px) {
-    flex: 1;
-  }
 }
 
 .search-icon {
@@ -46,33 +55,33 @@ $transition-speed: 0.2s;
   left: 12px;
   width: 16px;
   height: 16px;
-  color: var(--muted-text);
+  color: $muted-text;
   pointer-events: none;
 }
 
 .search-input {
   width: 100%;
-  background: var(--card-color);
+  background: $card-color;
   border: 1px solid transparent;
   padding: 10px 12px 10px 38px;
   border-radius: 10px;
-  color: var(--text-color);
+  color: $text-color;
   font-size: 0.9rem;
   transition: all $transition-speed ease;
 
   &::placeholder {
-    color: var(--muted-text);
+    color: $muted-text;
   }
 
   &:hover {
-    background: var(--card-color-light);
+    background: $card-hover;
   }
 
   &:focus {
     outline: none;
-    background: var(--card-color-light);
-    border-color: #555;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: $card-hover;
+    border-color: $border-color;
+    box-shadow: 0 4px 12px $shadow-color;
   }
 
   @media (max-width: 480px) {
@@ -81,29 +90,34 @@ $transition-speed: 0.2s;
   }
 }
 
-.theme-toggle {
-  background: var(--card-color);
-  border: none;
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: $card-color;
+  border: 1px solid $border-color;
   width: 40px;
   height: 40px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-color);
+  color: $text-color;
   cursor: pointer;
   flex-shrink: 0;
   transition: all $transition-speed ease;
   overflow: hidden;
 
-  .theme-icon {
+  svg {
     width: 20px;
     height: 20px;
-    animation: rotateIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover {
-    background: var(--card-color-light);
+    background: $card-hover;
     transform: translateY(-1px);
   }
 
@@ -115,6 +129,19 @@ $transition-speed: 0.2s;
     width: 36px;
     height: 36px;
   }
+}
+
+.logout-btn {
+  &:hover {
+    color: #ff4d4d; // Keep this hardcoded as it's a specific action color
+    border-color: rgba(255, 77, 77, 0.2);
+    background: rgba(255, 77, 77, 0.05);
+  }
+}
+
+// Ensure icons animate nicely when theme flips
+.theme-icon {
+  animation: rotateIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes rotateIn {

@@ -1,0 +1,192 @@
+@use "../../../styles/variables" as *;
+
+// Mapping variables for clean usage
+$bg-color: var(--bg-color);
+$card-color: var(--card-color);
+$card-hover: var(--card-color-light);
+$text-color: var(--text-color);
+$muted-text: var(--muted-text);
+$border-color: var(--border-color);
+$shadow-color: var(--shadow-color);
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $bg-color;
+  padding: 24px; // Slight increase for better breathing room
+}
+
+.auth-card {
+  background-color: $card-color;
+  border: 1px solid $border-color;
+  padding: 2.5rem;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px $shadow-color;
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (max-width: 480px) {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: none; // Cleaner on mobile
+  }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  p {
+    color: $muted-text;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-color;
+    margin-left: 4px;
+  }
+}
+
+.input-wrapper {
+  position: relative; // Crucial for toggle-password button
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    padding: 14px 16px; // Slightly taller for better touch targets
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    border-radius: 12px;
+    color: $text-color;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+
+    &::placeholder {
+      color: $muted-text;
+      opacity: 0.5;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: rgba($text-color, 0.3);
+      background-color: $card-hover;
+      box-shadow: 0 0 0 4px rgba($text-color, 0.05);
+    }
+  }
+
+  // Ensures input text doesn't hide behind the eye icon
+  &:has(.toggle-password) input {
+    padding-right: 48px;
+  }
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: $muted-text;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  z-index: 2;
+
+  &:hover {
+    color: $text-color;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: $text-color;
+  color: $bg-color;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+
+  &:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+    box-shadow: 0 4px 12px $shadow-color;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: $muted-text;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 4px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

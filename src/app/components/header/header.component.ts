@@ -1,6 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NotesStore } from '../../store/notes.store';
+import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +15,12 @@ import { NotesStore } from '../../store/notes.store';
 export class HeaderComponent {
   isDarkMode = signal(true);
 
-  constructor(public store: NotesStore) {}
+  constructor(
+    private store: NotesStore,
+    private authService: AuthService,
+    private toastService: ToastService,
+    private router: Router,
+  ) {}
 
   onSearch(event: Event) {
     const value = (event.target as HTMLInputElement).value;
@@ -26,6 +34,16 @@ export class HeaderComponent {
       document.body.classList.remove('light-theme');
     } else {
       document.body.classList.add('light-theme');
+    }
+  }
+
+  async onLogout() {
+    try {
+      await this.authService.logout();
+      this.toastService.success('See you soon!');
+      this.router.navigateByUrl('/login');
+    } catch (error: any) {
+      this.toastService.error('Logout failed');
     }
   }
 }

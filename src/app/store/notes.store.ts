@@ -1,5 +1,7 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
 import { Note } from '../models/note';
+import { Auth } from '@angular/fire/auth';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class NotesStore {
@@ -8,7 +10,7 @@ export class NotesStore {
 
   notes = signal<Note[]>(this.loadDataFromStorage());
 
-  constructor() {
+  constructor(private authService: AuthService) {
     effect(() => {
       localStorage.setItem('notes', JSON.stringify(this.notes()));
     });
@@ -26,7 +28,16 @@ export class NotesStore {
 
   //add notes
   addNote(title: string, content: string) {
-    const newNote = { id: Date.now(), title, content, isPinned: false };
+    const user = this.authService.user();
+    if (!user) return;
+
+    const newNote = {
+      id: Date.now(),
+      title,
+      content,
+      isPinned: false,
+      userId: user.uid,
+    };
     this.notes.update((prev) => [...prev, newNote]);
   }
 
@@ -64,10 +75,17 @@ export class NotesStore {
     }, 400);
   }
 
+  private userNotes = computed(() => {
+    const user = this.authService.user();
+    if (!user) return [];
+
+    return this.notes().filter((n) => n.userId === user.uid);
+  });
+
   // search filter
   filteredNotes = computed(() => {
     const term = this.searchTerm().toLowerCase();
-    const notes = this.notes();
+    const notes = this.userNotes();
 
     const filtered = !term
       ? notes
