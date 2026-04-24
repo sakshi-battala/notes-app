@@ -17,7 +17,8 @@ A modern Angular 17 notes application built with standalone components and Angul
 - Angular 17
 - Standalone components
 - Angular Signals (`signal`, `computed`, `effect`)
-- LocalStorage for persistence
+- Firebase Authentication (Email/Password)
+- LocalStorage for note persistence
 - CSS Variables for theming
 - TypeScript, HTML, SCSS
 
@@ -32,21 +33,29 @@ src/
       note-form/          # Note creation/edit form
       notes-list/         # List view for notes
       confirm-dialog/     # Confirmation dialog for deletions
+      login/              # User login form
+      signup/             # User registration form
     pages/
-      notes-page/         # Main notes page
+      notes-page/         # Main notes page (protected by auth guard)
       edit-note-page/     # Note editing page
     services/
+      auth.service.ts     # Firebase authentication service
       toast.service.ts    # Toast notification service
+    guards/
+      auth.guard.ts       # Route guard for protected pages
+      guest.guard.ts      # Route guard for guest pages (login/signup)
     store/
       notes.store.ts      # Signal-based state management for notes
     models/
       note.ts             # Note data model
+      user.ts             # User authentication model
+    firebase.config.ts    # Firebase configuration and initialization
   assets/
   styles/
     _variables.scss       # App style variables and theme definitions
 ```
 
-This structure keeps pages and reusable components separate, with a dedicated signal store and service layer for clean state handling.
+This structure keeps pages and reusable components separate, with a dedicated signal store and service layer for clean state handling. Authentication guards ensure only logged-in users can access the main notes page.
 
 ## How it works
 
@@ -55,16 +64,56 @@ This structure keeps pages and reusable components separate, with a dedicated si
 - **Reactivity**: Components consume signals directly, so UI updates reactively when notes change.
 - **Theming**: CSS variables define color schemes for dark and light themes. The theme toggle in the header switches the `light-theme` class on the body, updating the entire app's appearance instantly.
 
+## Firebase Authentication
+
+This application uses **Firebase Authentication** exclusively for user account management. User authentication (signup, login, logout) is handled by Firebase with email/password credentials. **Note data is stored locally using localStorage, not in Firebase**.
+
+### How Authentication Works
+
+1. **User Signup**: New users create an account by providing email and password, which is securely stored in Firebase
+2. **User Login**: Existing users authenticate with their Firebase credentials
+3. **Session Tracking**: The app monitors authentication state in real-time. If a user is logged in, they stay logged in even after closing the browser
+4. **Protected Routes**: The auth guard checks if a user is authenticated before allowing access to the notes page
+5. **Unauthenticated Access**: If a user is not logged in, they are automatically redirected to the login page
+6. **User Logout**: When a user logs out, their session ends and they are redirected to the login page
+
+### Note Storage
+
+Notes are **not** stored in Firebase. Instead:
+
+- All notes are saved to the browser's local storage automatically
+- Notes persist across browser sessions but are specific to each user and browser
+- If a user logs in on a different device or browser, they won't see notes from another device
+- The app uses Angular Signals to automatically sync note changes to localStorage
+
+### Components Involved
+
+- **Login Component**: Form where users enter email/password credentials to authenticate with Firebase
+- **Signup Component**: Form where new users create accounts on Firebase
+- **Notes Page**: Protected route that displays and manages notes stored in localStorage
+- **Auth Service**: Manages Firebase authentication operations (login, signup, logout, session tracking)
+- **Auth Guard**: Protects routes by checking authentication status before allowing access
+
 ## User Flow
 
 1. **Launch the App**: Open the app in your browser after running `npm start`.
-2. **Add a Note**: Use the note form at the top to create a new note by entering a title and content.
-3. **View Notes**: Newly added notes appear in the list below, displayed as cards.
-4. **Search Notes**: Type in the search bar in the header to filter notes instantly by title or content.
-5. **Edit a Note**: Click the edit button on a note card to navigate to the edit page, modify the content, and save changes.
-6. **Delete a Note**: Click the delete button on a note card, confirm in the dialog, and the note is removed.
-7. **Toggle Theme**: Click the theme toggle button (sun/moon icon) in the header to switch between dark and light modes.
-8. **Persistence**: All changes (add, edit, delete, reorder) are automatically saved to localStorage and persist across sessions.
+2. **Authentication Required**: If not logged in, you're redirected to the login page.
+3. **Create Account or Login**:
+   - **New User**: Click "Sign Up" and create an account with email and password on Firebase
+   - **Existing User**: Enter your credentials and click "Login" to authenticate with Firebase
+4. **Firebase Verification**: Firebase securely verifies your credentials
+5. **Access Notes**: Once authenticated, you're redirected to `/notes` page
+6. **Add a Note**: Use the note form at the top to create a new note by entering a title and content.
+7. **View Notes**: Newly added notes appear in the list below, displayed as cards.
+8. **Search Notes**: Type in the search bar in the header to filter notes instantly by title or content.
+9. **Edit a Note**: Click the edit button on a note card to navigate to the edit page, modify the content, and save changes.
+10. **Delete a Note**: Click the delete button on a note card, confirm in the dialog, and the note is removed.
+11. **Toggle Theme**: Click the theme toggle button (sun/moon icon) in the header to switch between dark and light modes.
+12. **Logout**: Click the logout button to end your session and return to the login page.
+13. **Persistence**:
+    - Notes are automatically saved to localStorage in your browser
+    - Notes persist across browser sessions but only on this device
+    - Each login session can have different notes depending on the browser or device used
 
 ## Installation and Setup
 
@@ -87,12 +136,15 @@ Or try the live demo at [https://notes-app-zeta-ashy-96.vercel.app/notes](https:
 
 ## Future Improvements
 
-- Add backend integration for user accounts and remote persistence
-- Implement authentication and user-specific notes
-- Sync notes across devices with a cloud API
-- Add rich text editing and note categories/tags
+- Add cloud-based note syncing across devices using Firestore
+- Implement user-specific notes stored server-side
+- Sync notes across devices with cloud backup
+- Implement note categories, tags, and collections
+- Add rich text editing capabilities
 - Implement note sharing and collaboration features
 - Add keyboard shortcuts for common actions
+- Support for note attachments and images
+- Add password recovery and email verification
 
 ## Screenshots
 
