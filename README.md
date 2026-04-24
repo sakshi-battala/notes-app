@@ -149,6 +149,11 @@ Or try the live demo at [https://notes-app-zeta-ashy-96.vercel.app/notes](https:
 ## Screenshots
 
 <p align="center">
+  <img width="45%" src="https://github.com/user-attachments/assets/15b23a8e-3e4a-4d08-a50f-c9a32f4139ba" />
+  <img width="45%" src="https://github.com/user-attachments/assets/8e986d49-b7bf-407b-a19a-81ef3e5141e0" />
+</p>
+
+<p align="center">
   <img src="https://github.com/user-attachments/assets/9338bb97-725d-4653-887e-47e6f8108d1f" width="45%" />
   <img src="https://github.com/user-attachments/assets/b27c4d3a-d934-44c7-a61f-6e1f0a431785" width="45%" />
 </p>
